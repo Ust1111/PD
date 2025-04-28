@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Robotcraft - обучающая игра по 3D моделированию</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+        AOS.init({
+            duration: 1000, // длительность анимации
+            once: true // анимация только один раз
+        });
+    </script>
+        <style>
+            body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #410A08;
+            background-color: #EBE8E1;
+        }
+        header {
+            background: 
+                linear-gradient(rgba(195, 165, 154, 0.85), rgba(195, 165, 154, 0.85)),
+                url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-dark.png') repeat;
+            padding: 30px;
+            margin-bottom: 30px;
+            color: #81270F;
+            border-radius: 10px;
+            text-align: center;
+        }
+            #page-container {
+            position: relative;
+            }
+
+            /* первонач для логотипа */
+            #site-logo {
+                position: absolute;
+                top: 15%;
+                left: 25%;
+                transform: translate(-50%, -50%);
+                transition: all 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+                z-index: 1001;
+                animation: moveAroundPage 40s linear infinite;
+            }
+            #site-logo::after {
+                content: '';
+                position: absolute;
+                top: 20%; /* по высоте машины */
+                left: -70px; /* влево от машинки */
+                width: 80px;
+                height: 20px;
+                background: rgba(255, 255, 100, 0.4);
+                box-shadow: 0 0 15px 8px rgba(255, 255, 150, 0.8);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                clip-path: polygon(0 0, 100% 40%, 100% 80%, 0 100%);
+                transform: rotate(-10deg);
+                z-index: 0;
+                pointer-events: none;
+                animation: shake 0.3s infinite;
+            }
+
+            #site-logo:hover::after {
+                opacity: 1;
+            }
+            #site-logo::before {
+                content: '';
+                position: absolute;
+                top: 30%; 
+                left: -70px;
+                width: 100px;
+                height: 20px;
+                background: rgba(255, 255, 100, 0.4);
+                box-shadow: 0 0 15px 8px rgba(255, 255, 150, 0.8);
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                clip-path: polygon(0 0, 100% 40%, 100% 80%, 20% 100%);
+                transform: rotate(-10deg);
+                z-index: 0;
+                pointer-events: none;
+                animation: shake 0.3s infinite;
+            }
+
+            #site-logo:hover::before {
+                opacity: 1;
+            }
+
+            #site-logo img {
+                width: 100px;
+                transition: width 0.3s ease;
+                animation: shake 0.3s infinite;
+            }
+            /* Дрожание */
+            @keyframes shake {
+            0%   { transform: translate(0, 0) rotate(var(--angle, 0deg)); }
+            25%  { transform: translate(0.5px, -0.5px) rotate(var(--angle, 0deg)); }
+            50%  { transform: translate(-0.5px, 0.5px) rotate(var(--angle, 0deg)); }
+            75%  { transform: translate(0.5px, 0.5px) rotate(var(--angle, 0deg)); }
+            100% { transform: translate(0, 0) rotate(var(--angle, 0deg)); }
+            }
+
+            @keyframes moveAroundPage {
+            
+            0%   { top: 0px; left: 0px; transform: rotate(0deg); }
+            /* Чуть влево перед кругом */
+            2%   { top: 0px; left: -110px; transform: rotate(0deg); }
+
+            /* Поворачиваем на 65° */
+            5%   { top: 0px; left: -110px; transform: rotate(-80deg); }
+            /* Едем вниз */
+            20%  { top: 1300px; left: -110px; transform: rotate(-80deg); }
+
+            /* Поворачиваем на 0° */
+            25%  { top: 1300px; left: -110px; transform: rotate(0deg); }
+            30%  { top: 1300px; left: -110px; transform: scaleX(-1); }
+            /* Едем вправо */
+            45%  { top: 1300px; left: calc(100% - 0px); transform: scaleX(-1) rotate(0deg); }
+
+            /* Поворачиваем на 115° */
+            50%  { top: 1300px; left: calc(100% - 0px); transform: rotate(100deg); }
+
+            /* Едем вверх */
+            70%  { top: -20px; left: calc(100% - 0px); transform: rotate(100deg); }
+
+            /* Поворачиваем на 0° */
+            75%  { top: -20px; left: calc(100% - 0px); transform: rotate(0deg); }
+
+            /* Едем влево */
+            100%  { top: 0px; left: 0px; transform: rotate(0deg); }
+
+            }
+            nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #f8f1de;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #81280f68;
+        }
+        nav a.current {
+            background-color: #81280f95;
+        }
+        .hero {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        .feature-card {
+            width: 25%;
+            background: #f8f1de;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .cta-button {
+            display: inline-block;
+            background: #a4381a;
+            color: #ecc96fe7;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: transform 0.3s;
+        }
+        .fancy-frame {
+            border: 5px solid #ddab2f;
+            border-radius: 20px;
+            padding: 10px;
+            background:#fbe9d0;
+            position: relative;
+        }
+        .fancy-frame::before {
+            content: "";
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 2px dashed #ddab2f;
+            border-radius: 25px;
+            pointer-events: none;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px 20px 10px 40px;
+            background: #451910;
+            color: #9f7304;
+            border-radius: 10px;
+        }
+        </style>
+    </head>
+
+<body>
+    <header id="main-header">
+        <div id="page-container">
+            <a href="index.html" class="logo" id="site-logo">
+              <img src="s.webp" alt="Логотип Robotcraft">
+            </a>
+            <h1>Robotcraft</h1>
+            <p>Инновационная обучающая игра по 3D моделированию и робототехнике</p>
+            <nav>
+                <a href="index.html">Главная</a>
+                <a href="about.html" class="current">О проекте</a>
+                <a href="plan.html">Этапы разработки</a>
+                <a href="rule.html">Правила игры</a>
+                <a href="contacts.html">Контакты</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <h1 style="margin-bottom: -5px;">О нас</h1>
+        <p style="margin-top: -5px;"><span style="color: #0066cc; font-weight: bold;">Мы</span> – студенты Московского Политехнического университета.</p>
+        <p>Проект <span style="color: #0066cc; font-weight: bold;"> «Robotcraft»</span> включает разработку инновационной игры, которая сочетает обучение 3D моделированию с игровыми элементами. Основная идея заключается в создании системы, позволяющей детям от 6 лет обучаться основам робототехники и 3D-моделирования через увлекательные и познавательные игры.</p>
+        <p style="margin-top: -5px;"><span style="color: #0066cc; font-weight: bold;">Цель: </span> Создать познавательную игру, обучающую навыкам 3D печати и моделированию 3D объектов, для развития творческого потенциала детей дошкольного возраста.</p>
+        <h2>Партёр и заказчик проекта</h2>
+        <p>ООО "Роботы в России"</p>
+        <h2>Состав студентов на данный момент:</h2>
+    
+        <div style="display: flex; align-items: flex-start; gap: 30px;">
+            <div>
+                <p>
+                    Нагорнов Артём Валерьевич <br>
+                    Беселева Устинья Викторовна <br>
+                    Колошина Валерия Санановна <br>
+                    Айдарбекова Зария Робертовна <br>
+                    Карпухин Максим Алексеевич <br>
+                    Алейников Ринат Викторович <br>
+                    Ефремов Кирилл Александрович <br>
+                    Заевская Диана Сергеевна <br>
+                    Нартоков Тамерлан Аланович <br>
+                    Гарьковец Данила Иванович <br>
+                    Жильников Кирилл Максимович <br>
+                    Яковлев Сергей Артемьевич <br>
+                    Тошбоева Нилуфар Мухторовна <br>
+                    Свирин Алексей Владимирович
+                </p>
+            </div>
+            <img src="gen.jpg" alt="Наша команда" width="570" style="border-radius: 10px;" class="fancy-frame">
+        </div>
+        <h3>Наши куратор проекта и главный инженер:</h3>
+        <p> Никулина Анна Константиновна <br>
+            Рязанов Алексей Валерьевич</p>
+        <a href="gallery.html" class="cta-button" style="margin-top: 20px;">
+            Посмотреть галерею проекта
+        </a>
+    </main>
+
+    <footer style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="display: flex; align-items: center;">
+            <span style="margin-right: 600px;">Общая группа в телеграме:</span>
+            <a href="https://t.me/c/1977540556/3" target="_blank" style="color:#0088cc;text-decoration:none;">
+                <i class="fab fa-telegram" style="font-size:24px;"></i>
+            </a>
+        </div>
+        <p style="text-align: left;">© 2025 Робостанция - образовательный проект Robotcraft</p>
+    </footer>
+</body>
+</html>

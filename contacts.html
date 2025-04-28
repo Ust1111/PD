@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Robotcraft - обучающая игра по 3D моделированию</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+        AOS.init({
+            duration: 1000, // длительность анимации
+            once: true // анимация только один раз
+        });
+    </script>
+        <style>
+            body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #410A08;
+            background-color: #EBE8E1;
+        }
+        header {
+            background: 
+                linear-gradient(rgba(195, 165, 154, 0.85), rgba(195, 165, 154, 0.85)),
+                url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-dark.png') repeat;
+            padding: 30px;
+            margin-bottom: 30px;
+            color: #81270F;
+            border-radius: 10px;
+            text-align: center;
+        }
+            /* первонач для логотипа */
+            #site-logo {
+                position: absolute;
+                top: 15%;
+                left: 25%;
+                transform: translate(-50%, -50%);
+                transition: all 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+                z-index: 1001;
+            }
+            
+            #site-logo img {
+                width: 100px;
+                transition: width 0.3s ease;
+            }
+            nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #f8f1de;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #81280f68;
+        }
+        nav a.current {
+            background-color: #81280f95;
+        }
+        .hero {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        .feature-card {
+            width: 25%;
+            background: #f8f1de;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .cta-button {
+            display: inline-block;
+            background: #a4381a;
+            color: #ecc96fe7;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: transform 0.3s;
+        }
+        .fancy-frame {
+            border: 5px solid #ddab2f;
+            border-radius: 20px;
+            padding: 10px;
+            background:#fbe9d0;
+            position: relative;
+        }
+        .fancy-frame::before {
+            content: "";
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 2px dashed #ddab2f;
+            border-radius: 25px;
+            pointer-events: none;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px 20px 10px 40px;
+            background: #451910;
+            color: #9f7304;
+            border-radius: 10px;
+        }
+        </style>
+    </head>
+
+<body>
+    <div id="footsteps-container"></div>
+    <header id="main-header">
+        <div class="header-content">
+            <a href="index.html" class="logo" id="site-logo">
+                <img src="sticker.webp" alt="Логотип Robotcraft">
+            </a>
+            <h1>Robotcraft</h1>
+            <p>Инновационная обучающая игра по 3D моделированию и робототехнике</p>
+            <nav>
+                <a href="index.html">Главная</a>
+                <a href="about.html">О проекте</a>
+                <a href="plan.html">Этапы разработки</a>
+                <a href="rule.html">Правила игры</a>
+                <a href="contacts.html" class="current">Контакты</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <h2>Контакты</h2>
+        <p>Email: info@robocorp.moscow</p>
+        <p>По телефону +7 (495) 134 59 69</p>
+    </main>
+
+    <h2>Как нас найти:</h2>
+    <p>Адрес: Москва, ВДНХ, павильон №2, проспект Мира, д. 119 стр. 2</p>
+    <h3 style="margin-bottom: 0px;">Пешком:</h3>
+    <p style="margin-top: 0px;">Парк ВДНХ (10 минут от метро ВДНХ), павильон Робостанция</p>
+    <h3 style="margin-bottom: 0px;">На машине:</h3>
+    <p style="margin-top: 0px;">Платная парковка находится через КПП Хованского въезда ВДНХ</p>
+    <h3 style="margin-bottom: 0px;">Автобус:</h3>
+    <p style="margin-top: 0px;">№ 533, от м. ВДНХ, м. Ботанический сад или станции МЦК Ботанический сад</p>
+    <h3 style="margin-bottom: 0px;">Монорельс:</h3>
+    <p style="margin-top: 0px;">Остановка «Выставочный центр»</p>
+    <h3 style="margin-bottom: 5px;">Карта:</h3>
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2240.9622240928556!2d37.628793176689186!3d55.82861497311239!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46b53744b14561d1%3A0x94f4ffee46413e15!2z0KDQvtCx0L7RgdGC0LDQvdGG0LjRjw!5e0!3m2!1sru!2sru!4v1745402563035!5m2!1sru!2sru" 
+        width="600" 
+        height="450" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade"
+        class="fancy-frame">
+    </iframe>
+
+
+    <footer style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="display: flex; align-items: center;">
+            <span style="margin-right: 600px;">Общая группа в телеграме:</span>
+            <a href="https://t.me/c/1977540556/3" target="_blank" style="color:#0088cc;text-decoration:none;">
+                <i class="fab fa-telegram" style="font-size:24px;"></i>
+            </a>
+        </div>
+        <p style="text-align: left;">© 2025 Робостанция - образовательный проект Robotcraft</p>
+    </footer>
+
+    <script>
+        const container = document.getElementById("footsteps-container");
+    
+        container.style.position = "absolute";
+        container.style.top = "0";
+        container.style.left = "0";
+        container.style.width = "100%";
+        container.style.height = "100%";
+        container.style.pointerEvents = "none";
+        container.style.zIndex = "0";
+    
+        let stepIndex = 0;
+        let directionIndex = 0;
+    
+        const stepDistance = 40;
+    
+        // Паддинги с краёв
+        const leftPadding = 50;
+        const rightPadding = 101;
+        const topPadding = 30;
+        const bottomPadding = -676;
+    
+        let x = leftPadding;
+        let y = topPadding;
+    
+        const directions = [
+            { dx: stepDistance, dy: 0, rotate: 90 },      // вправо (верх)
+            { dx: 0, dy: stepDistance, rotate: 180 },     // вниз (справа)
+            { dx: -stepDistance, dy: 0, rotate: 270 },   // влево (низ)
+            { dx: 0, dy: -stepDistance, rotate: 0 }    // вверх (слева)
+        ];
+    
+        function createFootstep(x, y, side, angle, directionIndex) {
+            const step = document.createElement("img");
+            step.src = side === 'left' ? "left-foot.svg" : "right-foot.svg";
+            step.style.position = "absolute";
+            step.style.width = side === 'right' ? "30px" : "36px";
+            step.style.opacity = "1";
+
+            let yOffset = 0;
+            let xOffset = side === 'left' ? -10 : 10;
+
+            // Смещения для каждой стороны:
+            if (directionIndex === 0) { // верх (правая полоса)
+                yOffset = side === 'left' ? -8 : 8;
+            } else if (directionIndex === 1) { // вниз (правая сторона)
+                yOffset = side === 'left' ? 1 : 4; // немного сместим вниз правую
+                xOffset = side === 'right' ? -14 : 4; // правую ногу чуть левее
+            } else if (directionIndex === 2) { // низ (левая полоса)
+                yOffset = side === 'left' ? 18 : 6; // левую ногу ниже
+                xOffset = side === 'left' ? -14 : 8;
+            } else if (directionIndex === 3) { // вверх (левая сторона)
+                yOffset = side === 'left' ? -6 : -12;
+            }
+
+            step.style.left = `${x + xOffset}px`;
+            step.style.top = `${y + yOffset}px`;
+            step.style.transform = `rotate(${angle}deg)`;
+            step.style.transition = "opacity 2s linear";
+            container.appendChild(step);
+
+            setTimeout(() => {
+                step.style.opacity = "0";
+                setTimeout(() => container.removeChild(step), 2000);
+            }, 1000);
+        }
+    
+        function walk() {
+            const isLeft = stepIndex % 2 === 0;
+            const side = isLeft ? 'left' : 'right';
+    
+            const dir = directions[directionIndex];
+            createFootstep(x, y, side, dir.rotate, directionIndex);
+    
+            x += dir.dx;
+            y += dir.dy;
+    
+            // Границы
+            if (directionIndex === 0 && x >= window.innerWidth - rightPadding) {
+                directionIndex = 1;
+            } else if (directionIndex === 1 && y >= window.innerHeight - bottomPadding) {
+                directionIndex = 2;
+            } else if (directionIndex === 2 && x <= leftPadding) {
+                directionIndex = 3;
+            } else if (directionIndex === 3 && y <= topPadding) {
+                directionIndex = 0;
+            }
+    
+            stepIndex++;
+        }
+    
+        setInterval(walk, 400);
+    </script>
+</body>
+</html>

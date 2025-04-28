@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Robotcraft - обучающая игра по 3D моделированию</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+        AOS.init({
+            duration: 1000, // длительность анимации
+            once: true // анимация только один раз
+        });
+    </script>
+        <style>
+            body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #410A08;
+            background-color: #EBE8E1;
+        }
+        header {
+            background: 
+                linear-gradient(rgba(195, 165, 154, 0.85), rgba(195, 165, 154, 0.85)),
+                url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-dark.png') repeat;
+            padding: 30px;
+            margin-bottom: 30px;
+            color: #81270F;
+            border-radius: 10px;
+            text-align: center;
+        }
+            /* первонач для логотипа */
+            #site-logo {
+                position: absolute;
+                top: 15%;
+                left: 25%;
+                transform: translate(-50%, -50%);
+                transition: all 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+                z-index: 1001;
+            }
+            #waveGrid {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                width: 100vw;
+                height: 100vh;
+            }
+        #site-logo img {
+            width: 100px;
+            transition: width 0.3s ease;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #f8f1de;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #81280f68;
+        }
+        nav a.current {
+            background-color: #81280f95;
+        }
+        .hero {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        .feature-card {
+            width: 25%;
+            background: #f8f1de;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .cta-button {
+            display: inline-block;
+            background: #a4381a;
+            color: #ecc96fe7;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: transform 0.3s;
+        }
+        .fancy-frame {
+            border: 5px solid #ddab2f;
+            border-radius: 20px;
+            padding: 10px;
+            background:#fbe9d0;
+            position: relative;
+        }
+        .fancy-frame::before {
+            content: "";
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 2px dashed #ddab2f;
+            border-radius: 25px;
+            pointer-events: none;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px 20px 10px 40px;
+            background: #451910;
+            color: #9f7304;
+            border-radius: 10px;
+        }
+        </style>
+    </head>
+
+<body>
+    <canvas id="waveGrid"></canvas>
+    <header id="main-header">
+        <div class="header-content">
+            <a href="index.html" class="logo" id="site-logo">
+                <img src="sticker.webp" alt="Логотип Robotcraft">
+            </a>
+            <h1>Robotcraft</h1>
+            <p>Инновационная обучающая игра по 3D моделированию и робототехнике</p>
+            <nav>
+                <a href="index.html">Главная</a>
+                <a href="about.html">О проекте</a>
+                <a href="plan.html" class="current">Этапы разработки</a>
+                <a href="rule.html">Правила игры</a>
+                <a href="contacts.html">Контакты</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <h2>История</h2>
+        <p> Проект "Робокрафт" создался в 2024 году в сентябре. <br>
+        После первого семестра в проект пришли четверо первокурсников.</p>
+        <h2>Этапы реализации</h2>
+        <p>1. Прототипирование и предварительная разработка (3 месяца)<br>
+            1.1. Исследование и планирование (1 месяц)<br>
+            - Анализ требований: Сбор требований от целевой аудитории, а также изучение существующих решений.<br>
+            - Определение функциональности: Формирование списка ключевых функций и возможностей платформы.<br>
+            - Создание концептуальных схем: Определение архитектуры системы и взаимодействия между компонентами.<br>
+            1.2. Разработка прототипа (2 месяца)<br>
+            - Создание минимально жизнеспособного продукта (MVP): Разработка базового функционала для тестирования.<br>
+            - Интерфейс пользователя: Проектирование и разработка простого интерфейса, включая макеты и прототипы.<br>
+            - Тестирование прототипа: Проведение начальных тестов на выбранной целевой аудитории для получения обратной связи.<br>
+            <br>2. Основная разработка (4 месяца)<br>
+            2.1. Разработка программного обеспечения и аппаратного обеспечения (2 месяца)<br>
+            - Кодирование: Основная разработка программной части (программирование алгоритмов управления, интерфейса пользовательского опыта и взаимодействия с пользователем).<br>
+            - Сборка оборудования: Подбор и интеграция компонентов (роботы, датчики, камеры и другое оборудование).<br>
+            2.2. Интеграция и тестирование компонентов (2 месяца)<br>
+            - Интеграция систем: Объединение программной и аппаратной части в единое целое.<br>
+            - Тестирование функций: Проверка реализации всех функций в различных сценариях работы.<br>
+            - Исправление ошибок: Анализ и корректировка ошибок, выявленных в процессе тестирования.<br>
+            <br>3. Тестирование и улучшение (3 месяца)<br>
+            3.1. Бета-тестирование с участниками (2 месяца)<br>
+            - Запуск бета-версии: Проведение тестирования с группой пользователей, включающей детей и их родителей.<br>
+            - Сбор обратной связи: Участие в воркшопах и опросах для получения впечатлений от пользователей.<br>
+            3.2. Анализ результатов и улучшение (1 месяц)<br>
+            - Оценка обратной связи: Анализ полученных данных и выявление ключевых проблем и пожеланий.<br>
+            - Корректировка функционала: Внесение улучшений в программное обеспечение и аппаратные составляющие на основе анализа результатов.<br>
+            <br>4. Завершение разработки и релиз (1 месяц)<br>
+            4.1. Подготовка к релизу (2 недели)<br>
+            - Финальное тестирование: Проведение стресс-тестов и окончательной проверки всех функций.<br>
+            - Документация: Создание пользовательской и технической документации, инструкций.<br>
+            4.2. Запуск проекта (2 недели)<br>
+            - Организация запуска: Подготовка рекламной кампании и мероприятий по презентации проекта.<br>
+            - Мониторинг и поддержка: Обеспечение технической поддержки пользователей после релиза и сбор дальнейшей обратной связи.<br>
+            <br>Итоговое время выполнения<br>
+            Весь проект займет 11 месяцев, включая все этапы от начального прототипирования до финального релиза и тестирования с пользователями. Такой поэтапный подход обеспечит качественное выполнение каждого аспекта проекта и позволит в конечном итоге создать эффективную образовательную платформу.<br>
+            </p>
+            <br><h2>Промежуточный продуктовый результат</h2>
+            <p>Правила:<br>
+                Правила были доработаны и структурированы, чтобы игроки их хорошо понимали и быстро запоминали. Согласованы с заказчиком.<br>
+                <br>Доработка карт:<br>
+                Карты были изменены, чтобы на них было комфортно играть. Ведуться доработки относительно размеров и возможностей для маневрирования дрона.<br>
+                <br>Первый прототип:<br>
+                Первый прототип робота был успешно создан и протестирован. Было создано два дрона, один в процессе доработки. <br>
+                <br>Эскизы робота:<br>
+                Первый эскиз робота спереди был создан.<br>
+            </p>
+
+            <br><h2 style="margin-bottom: 0px;">Обучение по моделированию для детей</h2>
+            <p style="margin-top: 0px;"> Примерный способ внедрения обучения по 3D моделированию.</p>
+            <a href="https://1drv.ms/w/c/71515c1ac58c35e5/EbJ5N_y6r1JAtDM4CJs7ELEBg_0hrPt7hASDWhGCWt2pNg?e=Qq5Sfq" 
+                class="cta-button" 
+                style="margin-top: 20px;" 
+                target="_blank">
+                    Открыть документ
+            </a>
+
+            <br><h2 style="margin-bottom: 0px;">Детали для робота</h2>
+            <p style="margin-top: 0px;"> Купленные варианты и образцы.</p>
+            <a href="https://thurse1-my.sharepoint.com/:x:/g/personal/19833_office365works_net/EZ-DkG6NIc1Nl2Vr5z1G1eUB6pGH64SIzSkA1ONxTZrdMw?e=t0iVe6" 
+                class="cta-button" 
+                style="margin-top: 20px;" 
+                target="_blank">
+                    Открыть таблицу
+            </a>
+    </main>
+
+    <footer style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="display: flex; align-items: center;">
+            <span style="margin-right: 600px;">Общая группа в телеграме:</span>
+            <a href="https://t.me/c/1977540556/3" target="_blank" style="color:#0088cc;text-decoration:none;">
+                <i class="fab fa-telegram" style="font-size:24px;"></i>
+            </a>
+        </div>
+        <p style="text-align: left;">© 2025 Робостанция - образовательный проект Robotcraft</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById("waveGrid");
+        const ctx = canvas.getContext("2d");
+        
+        function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+        
+        let t = 0;
+        
+        function drawGrid() {
+          const spacing = 40;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.strokeStyle = "#f8f1de";
+          ctx.lineWidth = 1;
+        
+          for (let x = 0; x < canvas.width; x += spacing) {
+            ctx.beginPath();
+            for (let y = 0; y < canvas.height; y += spacing) {
+              const offset = Math.sin((y + t) * 0.02 + x * 0.002) * 5;
+              ctx.lineTo(x + offset, y);
+            }
+            ctx.stroke();
+          }
+        
+          for (let y = 0; y < canvas.height; y += spacing) {
+            ctx.beginPath();
+            for (let x = 0; x < canvas.width; x += spacing) {
+              const offset = Math.sin((x + t) * 0.02 + y * 0.002) * 5;
+              ctx.lineTo(x, y + offset);
+            }
+            ctx.stroke();
+          }
+        
+          t += 1.5;
+          requestAnimationFrame(drawGrid);
+        }
+        
+        drawGrid();
+    </script>
+</body>
+</html>

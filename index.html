@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robotcraft - обучающая игра по 3D моделированию</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+    AOS.init({
+        duration: 1000, // длительность анимации
+        once: true // анимация только один раз
+    });
+</script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #410A08;
+            background-color: #EBE8E1;
+        }
+        header {
+            background: 
+                linear-gradient(rgba(195, 165, 154, 0.85), rgba(195, 165, 154, 0.85)),
+                url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-dark.png') repeat;
+            padding: 30px;
+            margin-bottom: 30px;
+            color: #81270F;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        /* первонач для логотипа */
+        #site-logo {
+            position: absolute;
+            top: 15%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            transition: all 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+            z-index: 1001;
+        }
+        
+        #site-logo img {
+            width: 100px;
+            transition: width 0.3s ease;
+        }
+        
+        /* Стили при скролле */
+        .header-scrolled #site-logo {
+            top:70%;
+            left: 130px;
+            transform: translate(0, -50%);
+            transition: all 3s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        /* Вторая анимация - поворот + движение вниз */
+        .header-scrolled-left #site-logo {
+            transform: rotate(-80deg);
+            transition: all 1.5s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+        .header-scrolled-down #site-logo {
+            top:220%;
+            transition: all 4s cubic-bezier(0.25, 0.1, 0.25, 1);
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #f8f1de;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #81280f68;
+        }
+        nav a.current {
+            background-color: #81280f95;
+        }
+        .hero {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        .feature-card {
+            width: 25%;
+            background: #f8f1de;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .cta-button {
+            display: inline-block;
+            background: #a4381a;
+            color: #ecc96fe7;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: transform 0.3s;
+        }
+        .fancy-frame {
+            border: 5px solid #ddab2f;
+            border-radius: 20px;
+            padding: 10px;
+            background:#fbe9d0;
+            position: relative;
+        }
+        .fancy-frame::before {
+            content: "";
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 2px dashed #ddab2f;
+            border-radius: 25px;
+            pointer-events: none;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px 20px 10px 40px;
+            background: #451910;
+            color: #9f7304;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+    <body>
+        <header id="main-header">
+            <div class="header-content">
+                <a href="index.html" class="logo" id="site-logo">
+                    <img src="sticker.webp" alt="Логотип Robotcraft">
+                </a>
+                <h1>Robotcraft</h1>
+                <p>Инновационная обучающая игра по 3D моделированию и робототехнике</p>
+                <nav>
+                    <a href="index.html" class="current">Главная</a>
+                    <a href="about.html">О проекте</a>
+                    <a href="plan.html">Этапы разработки</a>
+                    <a href="rule.html">Правила игры</a>
+                    <a href="contacts.html">Контакты</a>
+                </nav>
+            </div>
+        </header>
+        <main>
+            <section class="hero" style="display: flex; flex-direction: column; align-items: center;">
+                <h2>Обучаем будущих инженеров через игру!</h2>
+                <p>Интерактивная платформа для детей от 6 лет, сочетающая 3D-моделирование, программирование и робототехнику</p>
+                <div style="display: flex; align-items: center; gap: 100px;">
+                    <img src="cub.png" alt="Демонстрация игры Robotcraft" width="400" class="fancy-frame">
+                    <a href="about.html" class="cta-button" style="margin-top: 20px;">
+                        Узнать больше
+                    </a>
+                </div>
+            </section>
+    
+            <section>
+                <h2>Почему Robotcraft?</h2>
+                <div class="features">
+                    <div class="feature-card">
+                        <h3>Обучение через игру</h3>
+                        <p>Дети осваивают сложные концепции 3D-моделирования и робототехники в увлекательной игровой форме</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Развитие креативности</h3>
+                        <p>Система позволяет создавать уникальных роботов, развивая творческое мышление и инженерные навыки</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>Доступно с 6 лет</h3>
+                        <p>Специально разработанный интерфейс понятен детям дошкольного возраста</p>
+                    </div>
+                </div>
+            </section>
+    
+            <section>
+                <h2>Как это работает?</h2>
+                <ol>
+                    <li><strong>Создай</strong> - моделируй 3D-детали для своего робота в простом редакторе</li>
+                    <li><strong>Собери</strong> - комбинируй детали в уникальные конструкции</li>
+                    <li><strong>Программируй</strong> - задай поведение робота с помощью визуального программирования</li>
+                    <li><strong>Играй</strong> - участвуй в увлекательных миссиях и соревнованиях</li>
+                </ol>
+                <section class="hero" style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="i.jpg" alt="Процесс игры" width="500" class="fancy-frame">
+                </section>
+            </section>
+    
+            <section>
+                <h2>Наши текущие этапы</h2>
+                <p>Сейчас мы находимся на стадии активной разработки прототипа. Полная версия будет доступна через 8 месяцев.</p>
+                <a href="plan.html" class="cta-button">Посмотреть план разработки</a>
+            </section>
+        </main>
+    
+        <footer style="display: flex; flex-direction: column; gap: 10px;">
+            <div style="display: flex; align-items: center;">
+                <span style="margin-right: 600px;">Общая группа в телеграме:</span>
+                <a href="https://t.me/c/1977540556/3" target="_blank" style="color:#036697;text-decoration:none;">
+                    <i class="fab fa-telegram" style="font-size:28px;"></i>
+                </a>
+            </div>
+            <p style="text-align: left;">© 2025 Робостанция - образовательный проект Robotcraft</p>
+        </footer>
+        <script>
+            // Анимация логотипа при скролле
+            window.addEventListener('DOMContentLoaded', () => {
+                const header = document.getElementById('main-header');
+                const logo = document.getElementById('site-logo');
+                const moveTrigger = 100;   // Скролл для первой анимации
+                const rotateTrigger = 300; // Скролл для второй анимации
+                const downTrigger = 600; // Скролл для движения вниз
+                
+                function handleScroll() {
+                    const scrollY = window.scrollY;
+                    
+                    // Первая анимация
+                    if (scrollY > moveTrigger) {
+                        header.classList.add('header-scrolled');
+                    } else {
+                        header.classList.remove('header-scrolled');
+                    }
+                    
+                    // Вторая анимация
+                    if (scrollY > rotateTrigger) {
+                        header.classList.add('header-scrolled-left');
+                    } else {
+                        header.classList.remove('header-scrolled-left');
+                    }
+                    // Третья анимация
+                    if (scrollY > downTrigger) {
+                        header.classList.add('header-scrolled-down');
+                    } else {
+                        header.classList.remove('header-scrolled-down');
+                    }
+                }
+    
+                // Инициализация
+                handleScroll();
+                
+                // Оптимизированный обработчик скролла
+                let ticking = false;
+                window.addEventListener('scroll', function() {
+                    if (!ticking) {
+                        window.requestAnimationFrame(function() {
+                            handleScroll();
+                            ticking = false;
+                        });
+                        ticking = true;
+                    }
+                });
+            });
+        </script>
+    </body>
+</html>

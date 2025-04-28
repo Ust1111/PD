@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Robotcraft - обучающая игра по 3D моделированию</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script>
+        AOS.init({
+            duration: 1000, // длительность анимации
+            once: true // анимация только один раз
+        });
+    </script>
+        <style>
+            body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            color: #410A08;
+            background-color: #EBE8E1;
+        }
+        header {
+            background: 
+                linear-gradient(rgba(195, 165, 154, 0.85), rgba(195, 165, 154, 0.85)),
+                url('https://www.toptal.com/designers/subtlepatterns/uploads/double-bubble-dark.png') repeat;
+            padding: 30px;
+            margin-bottom: 30px;
+            color: #81270F;
+            border-radius: 10px;
+            text-align: center;
+        }
+            /* первонач для логотипа */
+            #site-logo {
+                position: absolute;
+                top: 15%;
+                left: 25%;
+                transform: translate(-50%, -50%);
+                transition: all 0.9s cubic-bezier(0.25, 0.1, 0.25, 1);
+                z-index: 1001;
+            }
+            #waveGrid {
+                position: fixed;
+                top: 0;
+                left: 0;
+                z-index: -1;
+                width: 100vw;
+                height: 100vh;
+            }
+        #site-logo img {
+            width: 100px;
+            transition: width 0.3s ease;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #f8f1de;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        nav a:hover {
+            background-color: #81280f68;
+        }
+        nav a.current {
+            background-color: #81280f95;
+        }
+        .hero {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin: 30px 0;
+        }
+        .feature-card {
+            width: 25%;
+            background: #f8f1de;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .cta-button {
+            display: inline-block;
+            background: #a4381a;
+            color: #ecc96fe7;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 20px 0;
+            transition: transform 0.3s;
+        }
+        .fancy-frame {
+            border: 5px solid #ddab2f;
+            border-radius: 20px;
+            padding: 10px;
+            background:#fbe9d0;
+            position: relative;
+        }
+        .fancy-frame::before {
+            content: "";
+            position: absolute;
+            top: -10px; left: -10px; right: -10px; bottom: -10px;
+            border: 2px dashed #ddab2f;
+            border-radius: 25px;
+            pointer-events: none;
+        }
+        .cta-button:hover {
+            transform: scale(1.05);
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            padding: 30px 20px 10px 40px;
+            background: #451910;
+            color: #9f7304;
+            border-radius: 10px;
+        }
+        </style>
+    </head>
+
+<body>
+    <canvas id="waveGrid"></canvas>
+    <header id="main-header">
+        <div class="header-content">
+            <a href="index.html" class="logo" id="site-logo">
+                <img src="sticker.webp" alt="Логотип Robotcraft">
+            </a>
+            <h1>Robotcraft</h1>
+            <p>Инновационная обучающая игра по 3D моделированию и робототехнике</p>
+            <nav>
+                <a href="index.html">Главная</a>
+                <a href="about.html">О проекте</a>
+                <a href="plan.html">Этапы разработки</a>
+                <a href="rule.html"class="current">Правила игры</a>
+                <a href="contacts.html">Контакты</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <h1>Правила игры</h1>
+        <h2>Цель игры</h2>
+        <p> Бои происходят на закрытых аренах с укрытиями и ловушками. <br>
+            Арена может иметь интерактивные элементы (ловушки и круги захвата), которые влияют на ход сражения.<br>
+            Также предусматриваются дополнительные цели, за которые начисляются победные очки. Все активности появляются в 
+            случайных точках карты. <br>
+            Количество игроков 3 на 3.</p>
+        
+        <br><h2>Виды ловушек</h2>
+        <h3>Электрошокер:</h3>
+        <p>На 2 секунды парализует дрона: он не может двигаться, стрелять и использовать утилиты.</p>
+        <h3>Лужа нано-замедлителя:</h3>
+        <p>Дрон замедляется на 60% в течение 3 секунд.</p>
+        <h3>Терморешётка:</h3>
+        <p>Наносит урон, если дрон находится на ловушке в течение 2 секунд.</p>
+        <br><h2>Модульная система улучшений</h2>
+        <h3 style="margin-bottom: 0px;">1. Двигатели</h3>
+        <p style="margin-top: 0px;">Влияют на скорость, маневренность и доступ к специальным перемещениям:</p>
+        <p>•  "Ускоритель Молнии" — высокая скорость, но низкая маневренность. Подходит для захвата точек.<br>
+            <br>•  "Гусеничный Пресс" — медленный, но устойчивый к отталкиванию и толчкам, может толкать других.<br>
+            <br>•  "Паукоход" — паукообразные ноги.<br>
+            <br>•  "Классика" – обычные колеса.<br>
+        </p>
+        <h3 style="margin-bottom: 0px;">2. Оружие</h3>
+        <p style="margin-top: 0px;">Основной урон или специализированная функция:</p>
+        <p>•  "Пушка Хаоса" — мощный выстрел, быстрый перезаряд и время свечения 2 секунды. <br>
+            <br>•  "Пушка Наверняк" – стреляет дольше чем пушка Хаоса время свечения 5 секунд, но имеет долгий перезаряд. <br>
+            <br>•  "Пушечка поддержки" — лечит союзников, если выстрел попал в них. <br>
+        </p>
+        <h3 style="margin-bottom: 0px;">3. Утилитарные модули </h3>
+        <p style="margin-top: 0px;">Дают уникальные способности и имеют перезарядку:</p>
+        <p>•  "Щит На Пролом" — активирует временный щит вокруг дрона, путём деактивации барьера.<br>
+            <br>•  "Наноботы-ремонтники" — пассивно восстанавливает здоровье дрона, но очень медленно.<br>
+            <br>•  "На разочек" — увеличивает урон/лечение пушки в двухкратном режиме на следующий выстрел.<br>
+        </p>
+
+        <br><h2>Система очков</h2>
+        <h3>Основные действия:</h3>
+        <span style="padding-right: 300px;">Уничтожение вражеского дрона</span>
+        <span>+5 очков</span><br>
+        <br><span style="padding-right: 305px;">Захват "точки контроля" (5 сек)</span>
+        <span>+8 очков</span><br>
+        <br><span style="padding-right: 233px;">Остался в конце игры дрон за 1 единицу</span>
+        <span>+3 очка</span><br>
+
+        <br><h2>Штрафы</h2>
+        <span style="padding-right: 393px;">Убийство союзника</span>
+        <span>-1 очко</span><br>
+
+        <br><h2>Формат матчей</h2>
+        <p style="margin-bottom: 0px;">3 на 3, быстрые раунды по 7 минут.</p>
+        <p style="margin-top: 0px;">Побеждает команда, которая по истечению времени соберёт больше очков или уничтожит вражескую команду.</p>
+
+        <br><h2 style="margin-bottom: 0px;">Рейтинговая награда</h2>
+        <p style="margin-top: 0px;">После матча начисляются:</p>
+        <p>•  +30 баллов за победу<br>
+            <br>•  +10 за поражение (за участие и активность)<br>
+            <br>•  +(5–15) бонусных очков за индивидуальные действия (MVP, лучший захват, лечащий и т.д.)<br>
+        </p>
+        <p>По истечению сезона в игру будут добавлены комплекты наклеек или иной кастомизацией с логотипом команды или иной дистрибьюции.</p><br>
+        
+        <h2>Карты игры</h2>
+        <img src="карта 1 схема.png" alt="карта поля 1" width="299">
+        <img src="карта 2 схема.png" alt="карта поля 1" width="299">
+        <img src="карта 3 схема.png" alt="карта поля 1" width="299"><br><br>
+
+        <h2 style="margin-bottom: 0px;">Погода</h2>
+        <p style="margin-top: 0px;">Погодные явления - механика игры, которая будет влиять на основные
+            характеристики роботов</p>
+        <a href="weather.html" class="cta-button" style="margin-top: 20px;">
+            Посмотреть погодные явления
+        </a>
+    </main>
+
+    <footer style="display: flex; flex-direction: column; gap: 20px;">
+        <div style="display: flex; align-items: center;">
+            <span style="margin-right: 600px;">Общая группа в телеграме:</span>
+            <a href="https://t.me/c/1977540556/3" target="_blank" style="color:#0088cc;text-decoration:none;">
+                <i class="fab fa-telegram" style="font-size:24px;"></i>
+            </a>
+        </div>
+        <p style="text-align: left;">© 2025 Робостанция - образовательный проект Robotcraft</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById("waveGrid");
+        const ctx = canvas.getContext("2d");
+        
+        function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+        window.addEventListener("resize", resizeCanvas);
+        resizeCanvas();
+        
+        let t = 0;
+        
+        function drawGrid() {
+          const spacing = 40;
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          ctx.strokeStyle = "#f8f1de";
+          ctx.lineWidth = 1;
+        
+          for (let x = 0; x < canvas.width; x += spacing) {
+            ctx.beginPath();
+            for (let y = 0; y < canvas.height; y += spacing) {
+              const offset = Math.sin((y + t) * 0.02 + x * 0.002) * 5;
+              ctx.lineTo(x + offset, y);
+            }
+            ctx.stroke();
+          }
+        
+          for (let y = 0; y < canvas.height; y += spacing) {
+            ctx.beginPath();
+            for (let x = 0; x < canvas.width; x += spacing) {
+              const offset = Math.sin((x + t) * 0.02 + y * 0.002) * 5;
+              ctx.lineTo(x, y + offset);
+            }
+            ctx.stroke();
+          }
+        
+          t += 1.5;
+          requestAnimationFrame(drawGrid);
+        }
+        
+        drawGrid();
+    </script>
+</body>
+</html>
