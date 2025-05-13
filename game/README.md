@@ -41,6 +41,7 @@ https://rutube.ru/video/private/df34c644636e954302d5cb7fe5bf09d8/?p=xsbKZM6uW33x
 
 ```bash
 pip install tcod numpy
+```
 
 ---
 ## Установка и настройка окружения <a name="установка"></a>
@@ -51,9 +52,10 @@ pip install tcod numpy
 python -m venv venv  
 source venv/bin/activate  
 venv\Scripts\activate  
-
+```
 
 3. Установите зависимости:
 
 ```bash
 pip install tcod numpy
+```
